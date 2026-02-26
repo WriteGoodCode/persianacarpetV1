@@ -12,16 +12,17 @@ function App() {
   // Track tel: link clicks for GTM (mobile call conversions)
   useEffect(() => {
     function handleTelClick(e) {
-      const link = e.target.closest('a[href^="tel:"]');
+      const link = e.target.closest('a[href*="tel:"]');
       if (!link) return;
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'phone_click',
         phone_number: link.href.replace('tel:', ''),
+        link_text: link.textContent?.trim() || '',
       });
     }
-    document.addEventListener('click', handleTelClick);
-    return () => document.removeEventListener('click', handleTelClick);
+    document.addEventListener('click', handleTelClick, true);
+    return () => document.removeEventListener('click', handleTelClick, true);
   }, []);
 
   return (
