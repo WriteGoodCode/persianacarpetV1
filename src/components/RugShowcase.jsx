@@ -220,7 +220,7 @@ export function RugShowcase() {
                             </div>
 
                             {/* Caption Card - Frosted Gaussian Blur like the TopBar */}
-                            <div className="absolute bottom-6 left-6 md:bottom-12 md:left-12 z-20 bg-white/60 backdrop-blur-xl backdrop-saturate-150 border border-white/20 text-obsidian p-4 md:p-6 rounded-[1rem] shadow-xl max-w-[220px] md:max-w-[280px] flex flex-col gap-3 pointer-events-auto cursor-default" onClick={(e) => e.stopPropagation()}>
+                            <div className="absolute bottom-6 left-6 md:bottom-12 md:left-12 z-20 bg-white/80 backdrop-blur-[40px] backdrop-saturate-200 border border-white/40 text-obsidian p-4 md:p-6 rounded-[1rem] shadow-xl max-w-[220px] md:max-w-[280px] flex flex-col gap-3 pointer-events-auto cursor-default" onClick={(e) => e.stopPropagation()}>
                                 <div>
                                     <h3 className="font-serif italic text-xl md:text-2xl font-semibold mb-1">{rug.origin}</h3>
                                     <p className="font-mono text-[10.5px] uppercase tracking-widest text-obsidian/70 font-semibold">{rug.year}</p>
