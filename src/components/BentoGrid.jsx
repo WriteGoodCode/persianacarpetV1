@@ -7,99 +7,118 @@ export function BentoGrid() {
     useEffect(() => {
         if (!gridRef.current) return;
 
-        // 1. Setup Text Reveal
-        // Improved text splitting: split by words first, then characters, so words don't break across lines
-        const wrapCharacters = (element) => {
-            const text = element.innerText;
-            element.innerHTML = '';
-            const words = text.split(' ');
-
-            const allCharSpans = [];
-
-            words.forEach((word, wordIndex) => {
-                // Create word wrapper to prevent breaking mid-word
-                const wordSpan = document.createElement('span');
-                wordSpan.style.display = 'inline-block';
-                // Add trailing space for all words except the last one
-                const wordWithSpace = wordIndex < words.length - 1 ? word + ' ' : word;
-
-                for (let char of wordWithSpace) {
-                    const charSpan = document.createElement('span');
-                    charSpan.innerText = char === ' ' ? '\u00A0' : char; // preserve spaces
-                    charSpan.style.opacity = 0;
-                    charSpan.style.display = 'inline-block';
-                    wordSpan.appendChild(charSpan);
-                    allCharSpans.push(charSpan);
-                }
-
-                element.appendChild(wordSpan);
-                // Add actual space between word wrappers so browser can naturally wrap them
-                if (wordIndex < words.length - 1) {
-                    element.appendChild(document.createTextNode(' '));
-                }
-            });
-
-            return allCharSpans;
-        };
+        const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+        const isMobile = window.innerWidth < 768 || isTouchDevice;
 
         const cards = gridRef.current.querySelectorAll('.bento-card');
 
-        cards.forEach((card) => {
-            const headline = card.querySelector('h3');
-            const body = card.querySelector('p');
-
-            // Only split if elements exist
-            const headlineChars = headline ? wrapCharacters(headline) : [];
-            const bodyChars = body ? wrapCharacters(body) : [];
-
-            // Setup Intersection Observer for scroll reveal
+        if (isMobile) {
+            // Simple fade-up for mobile, no text splitting
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Unobserve immediately so it only plays once
                         observer.unobserve(entry.target);
-
-                        // GSAP Timeline for this specific card
-                        const tl = gsap.timeline();
-
-                        // Fade up the card itself quickly
-                        tl.to(card, {
+                        gsap.to(entry.target, {
                             opacity: 1,
                             y: 0,
-                            duration: 0.6,
+                            duration: 0.8,
                             ease: "power2.out"
                         });
-
-                        // Reveal headline characters (30ms per char)
-                        if (headlineChars.length) {
-                            tl.to(headlineChars, {
-                                opacity: 1,
-                                stagger: 0.03,
-                                duration: 0.1,
-                                ease: "none"
-                            }, "-=0.3"); // Overlap slightly with card reveal
-                        }
-
-                        // Reveal body characters (15ms per char) after headline finishes
-                        if (bodyChars.length) {
-                            tl.to(bodyChars, {
-                                opacity: 1,
-                                stagger: 0.015,
-                                duration: 0.1,
-                                ease: "none"
-                            });
-                        }
                     }
                 });
-            }, { threshold: 0.3 }); // 30% of card must be visible
+            }, { threshold: 0.1 });
 
-            observer.observe(card);
-        });
+            cards.forEach(card => observer.observe(card));
+        } else {
+            // Complex GSAP Animations for Desktop
+            // 1. Setup Text Reveal
+            // Improved text splitting: split by words first, then characters, so words don't break across lines
+            const wrapCharacters = (element) => {
+                const text = element.innerText;
+                element.innerHTML = '';
+                const words = text.split(' ');
 
-        // 2. Setup Cursor Follow Radial Glow (Desktop Only)
-        const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+                const allCharSpans = [];
 
-        if (!isTouchDevice) {
+                words.forEach((word, wordIndex) => {
+                    // Create word wrapper to prevent breaking mid-word
+                    const wordSpan = document.createElement('span');
+                    wordSpan.style.display = 'inline-block';
+                    // Add trailing space for all words except the last one
+                    const wordWithSpace = wordIndex < words.length - 1 ? word + ' ' : word;
+
+                    for (let char of wordWithSpace) {
+                        const charSpan = document.createElement('span');
+                        charSpan.innerText = char === ' ' ? '\u00A0' : char; // preserve spaces
+                        charSpan.style.opacity = 0;
+                        charSpan.style.display = 'inline-block';
+                        wordSpan.appendChild(charSpan);
+                        allCharSpans.push(charSpan);
+                    }
+
+                    element.appendChild(wordSpan);
+                    // Add actual space between word wrappers so browser can naturally wrap them
+                    if (wordIndex < words.length - 1) {
+                        element.appendChild(document.createTextNode(' '));
+                    }
+                });
+
+                return allCharSpans;
+            };
+
+            cards.forEach((card) => {
+                const headline = card.querySelector('h3');
+                const body = card.querySelector('p');
+
+                // Only split if elements exist
+                const headlineChars = headline ? wrapCharacters(headline) : [];
+                const bodyChars = body ? wrapCharacters(body) : [];
+
+                // Setup Intersection Observer for scroll reveal
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // Unobserve immediately so it only plays once
+                            observer.unobserve(entry.target);
+
+                            // GSAP Timeline for this specific card
+                            const tl = gsap.timeline();
+
+                            // Fade up the card itself quickly
+                            tl.to(card, {
+                                opacity: 1,
+                                y: 0,
+                                duration: 0.6,
+                                ease: "power2.out"
+                            });
+
+                            // Reveal headline characters (30ms per char)
+                            if (headlineChars.length) {
+                                tl.to(headlineChars, {
+                                    opacity: 1,
+                                    stagger: 0.03,
+                                    duration: 0.1,
+                                    ease: "none"
+                                }, "-=0.3"); // Overlap slightly with card reveal
+                            }
+
+                            // Reveal body characters (15ms per char) after headline finishes
+                            if (bodyChars.length) {
+                                tl.to(bodyChars, {
+                                    opacity: 1,
+                                    stagger: 0.015,
+                                    duration: 0.1,
+                                    ease: "none"
+                                });
+                            }
+                        }
+                    });
+                }, { threshold: 0.3 }); // 30% of card must be visible
+
+                observer.observe(card);
+            });
+
+            // 2. Setup Cursor Follow Radial Glow (Desktop Only)
             cards.forEach(card => {
                 // Ensure card can contain absolute overflow glow properly
                 card.style.position = 'relative';
@@ -118,7 +137,8 @@ export function BentoGrid() {
                 // Ensure text stays above the glow
                 const children = Array.from(card.children);
                 children.forEach(child => {
-                    if (child !== glow) {
+                    if (child !== glow && child.tagName !== 'DIV' || child.classList.contains('w-full') || child.classList.contains('relative')) {
+                        // Only elevate content holding divs and text
                         child.style.position = 'relative';
                         child.style.zIndex = '1';
                     }
@@ -155,7 +175,7 @@ export function BentoGrid() {
             });
         }
 
-        // 3. Setup Pulsing Badge Animation
+        // 3. Setup Pulsing Badge Animation (Runs everywhere)
         const badgeOuter = gridRef.current.querySelector('.auth-badge-outer');
         const badgeInner = gridRef.current.querySelector('.auth-badge-inner');
 
