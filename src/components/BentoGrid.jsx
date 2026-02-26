@@ -248,7 +248,7 @@ export function BentoGrid() {
 
                 {/* Collectors - Square */}
                 <div className="bento-card opacity-0 translate-y-8 bg-[#f4f0ea] border border-obsidian/5 p-8 md:p-10 rounded-[2rem] flex flex-col justify-end shadow-sm relative overflow-hidden">
-                    <h3 className="font-serif italic text-2xl text-obsidian mb-2 font-semibold relative z-10">Collectors, Not Salespeople</h3>
+                    <h3 className="font-serif italic text-2xl text-obsidian mb-2 font-semibold relative z-10">Collectors<br />Not Salespeople</h3>
                     <div className="w-full relative z-10">
                         <p className="highlight-target font-sans text-obsidian/85 leading-relaxed">
                             Your questions answered by the person who found the piece. Every question answered firsthand.
