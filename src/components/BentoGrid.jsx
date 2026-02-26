@@ -96,66 +96,62 @@ export function BentoGrid() {
             observer.observe(card);
         });
 
-        // 2. Setup Cursor Follow Highlight (Desktop Only)
+        // 2. Setup Cursor Follow Radial Glow (Desktop Only)
         const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
         if (!isTouchDevice) {
             cards.forEach(card => {
-                const bodyText = card.querySelector('.highlight-target');
-                if (!bodyText) return;
+                // Ensure card can contain absolute overflow glow properly
+                card.style.position = 'relative';
+                card.style.overflow = 'hidden';
 
-                // Create highlight element
-                const highlight = document.createElement('div');
-                highlight.className = 'absolute pointer-events-none rounded-sm blur-[8px]';
-                highlight.style.backgroundColor = 'rgba(180, 160, 120, 0.2)';
-                highlight.style.height = '1.8em'; // Better to use ems for line height
-                highlight.style.width = '100%';
-                highlight.style.left = '0';
-                highlight.style.opacity = '0';
-                highlight.style.zIndex = '0';
+                // Create the radial glow element
+                const glow = document.createElement('div');
+                glow.className = 'pointer-events-none absolute z-0 opacity-0';
+                // 250px diameter roughly, centered on pointer
+                glow.style.width = '250px';
+                glow.style.height = '250px';
+                glow.style.left = '-125px'; // offset by half width
+                glow.style.top = '-125px'; // offset by half height
+                glow.style.background = 'radial-gradient(circle, rgba(180, 160, 120, 0.12) 0%, rgba(180, 160, 120, 0) 70%)';
 
-                // Proper positioning context
-                bodyText.parentElement.style.position = 'relative';
-                bodyText.style.position = 'relative';
-                bodyText.style.zIndex = '1';
-                bodyText.parentElement.appendChild(highlight);
-
-                let hideTimeout;
-
-                const moveHighlight = (e) => {
-                    clearTimeout(hideTimeout);
-                    const rect = bodyText.parentElement.getBoundingClientRect();
-
-                    // Track cursor relative to the text container
-                    const relativeY = e.clientY - rect.top;
-                    const relativeX = e.clientX - rect.left;
-
-                    // Only show if cursor is over the paragraph area
-                    if (relativeY >= -20 && relativeY <= rect.height + 20 &&
-                        relativeX >= -20 && relativeX <= rect.width + 20) {
-
-                        gsap.to(highlight, {
-                            opacity: 1,
-                            y: relativeY - (parseFloat(getComputedStyle(highlight).height) / 2), // Center vertically on cursor
-                            duration: 0.15, // slightly slower for standard trailing feel
-                            ease: "power2.out"
-                        });
-                    } else {
-                        // Soft fade if technically inside card but away from text
-                        gsap.to(highlight, { opacity: 0, duration: 0.3 });
+                // Ensure text stays above the glow
+                const children = Array.from(card.children);
+                children.forEach(child => {
+                    if (child !== glow) {
+                        child.style.position = 'relative';
+                        child.style.zIndex = '1';
                     }
+                });
+
+                card.appendChild(glow);
+
+                const moveGlow = (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const relativeX = e.clientX - rect.left;
+                    const relativeY = e.clientY - rect.top;
+
+                    gsap.to(glow, {
+                        x: relativeX,
+                        y: relativeY,
+                        opacity: 1,
+                        duration: 0.15,
+                        ease: "power2.out"
+                    });
                 };
 
                 const leaveCard = () => {
-                    hideTimeout = setTimeout(() => {
-                        gsap.to(highlight, { opacity: 0, duration: 0.4 });
-                    }, 100);
+                    gsap.to(glow, {
+                        opacity: 0,
+                        duration: 0.4,
+                        ease: "power2.out"
+                    });
                 };
 
-                card.addEventListener('mousemove', moveHighlight);
+                card.addEventListener('mousemove', moveGlow);
                 card.addEventListener('mouseleave', leaveCard);
 
-                bodyText._cleanupStats = { moveHighlight, leaveCard };
+                card._cleanupGlow = { moveGlow, leaveCard, glow };
             });
         }
 
@@ -176,15 +172,14 @@ export function BentoGrid() {
 
         // Complete Cleanup Function
         return () => {
-            // In a perfect world we kill all specific GSAP tweens, but clearing the timeline animations via unmount is usually fine for these.
             if (!isTouchDevice) {
                 cards.forEach(card => {
-                    const bodyText = card.querySelector('.highlight-target');
-                    if (bodyText && bodyText._cleanupStats) {
-                        card.removeEventListener('mousemove', bodyText._cleanupStats.moveHighlight);
-                        card.removeEventListener('mouseleave', bodyText._cleanupStats.leaveCard);
-                        const hl = bodyText.parentElement.querySelector('div.blur-\\[8px\\]');
-                        if (hl) hl.remove();
+                    if (card._cleanupGlow) {
+                        card.removeEventListener('mousemove', card._cleanupGlow.moveGlow);
+                        card.removeEventListener('mouseleave', card._cleanupGlow.leaveCard);
+                        if (card._cleanupGlow.glow && card.contains(card._cleanupGlow.glow)) {
+                            card.removeChild(card._cleanupGlow.glow);
+                        }
                     }
                 });
             }
