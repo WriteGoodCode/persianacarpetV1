@@ -23,7 +23,7 @@ export function CollectorStory() {
     }, []);
 
     return (
-        <section ref={sectionRef} className="bg-ivory text-obsidian pt-32 md:pt-48 pb-16 md:pb-24 px-6">
+        <section id="story" ref={sectionRef} className="bg-ivory text-obsidian pt-32 md:pt-48 pb-16 md:pb-24 px-6">
             <div className="max-w-3xl mx-auto flex flex-col gap-10">
 
                 <h2 className="fade-up font-serif italic text-4xl md:text-5xl text-obsidian mb-6 tracking-tight drop-shadow-sm">

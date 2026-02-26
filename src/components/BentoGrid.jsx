@@ -208,7 +208,7 @@ export function BentoGrid() {
     }, []);
 
     return (
-        <section className="bg-ivory text-obsidian pt-12 md:pt-24 pb-32 md:pb-48 px-6 relative z-10">
+        <section id="why" className="bg-ivory text-obsidian pt-12 md:pt-24 pb-32 md:pb-48 px-6 relative z-10">
             <div ref={gridRef} className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[1fr]">
 
                 {/* Private Viewing - Wide */}

@@ -43,7 +43,7 @@ export function Footer() {
     }
 
     return (
-        <footer className="bg-obsidian border-t border-[#1a1a24] pt-32 pb-16 px-6 md:px-12 text-ivory">
+        <footer id="contact" className="bg-obsidian border-t border-[#1a1a24] pt-32 pb-16 px-6 md:px-12 text-ivory">
             <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
 
                 <h2 className="font-serif italic text-4xl md:text-5xl mb-4 text-champagne">

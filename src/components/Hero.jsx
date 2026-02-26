@@ -22,6 +22,7 @@ export function Hero() {
 
     return (
         <section
+            id="shop"
             ref={containerRef}
             className="relative h-[100dvh] w-full overflow-hidden flex flex-col justify-end pb-[10vh] px-6 md:px-12 lg:px-24"
         >

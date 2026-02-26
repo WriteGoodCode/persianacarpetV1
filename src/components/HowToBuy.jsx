@@ -2,7 +2,7 @@ import { Phone, Search, Check } from 'lucide-react';
 
 export function HowToBuy() {
     return (
-        <section className="py-24 px-6 md:px-16 bg-white relative z-10">
+        <section id="how-to-buy" className="py-24 px-6 md:px-16 bg-white relative z-10">
             <div className="max-w-6xl mx-auto text-center">
                 <h2 className="font-serif text-4xl md:text-5xl text-[#6D3D3D] mb-24 tracking-normal">
                     How to Buy a Persian Rug

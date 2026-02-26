@@ -187,7 +187,7 @@ export function RugShowcase() {
 
     return (
         <>
-            <section ref={containerRef} className="bg-[#0a0a0e] pt-32 pb-12 w-full flex flex-col items-center relative z-10">
+            <section id="carpets" ref={containerRef} className="bg-[#0a0a0e] pt-32 pb-12 w-full flex flex-col items-center relative z-10">
                 <style dangerouslySetInnerHTML={{
                     __html: `
                     .zoom-cursor-hover { cursor: zoom-in; }
