@@ -7,11 +7,12 @@ export function TopBar() {
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 50) {
-                barRef.current?.classList.add('bg-obsidian/80', 'backdrop-blur-md', 'shadow-sm', 'border-white/10');
-                barRef.current?.classList.remove('bg-transparent', 'border-transparent');
+                // Frosted glass effect: lower opacity on the white background, but more blur
+                barRef.current?.classList.add('bg-white/40', 'backdrop-blur-xl', 'backdrop-saturate-150', 'shadow-sm', 'border-white/20', 'text-obsidian');
+                barRef.current?.classList.remove('bg-transparent', 'border-transparent', 'text-ivory');
             } else {
-                barRef.current?.classList.remove('bg-obsidian/80', 'backdrop-blur-md', 'shadow-sm', 'border-white/10');
-                barRef.current?.classList.add('bg-transparent', 'border-transparent');
+                barRef.current?.classList.remove('bg-white/40', 'backdrop-blur-xl', 'backdrop-saturate-150', 'shadow-sm', 'border-white/20', 'text-obsidian');
+                barRef.current?.classList.add('bg-transparent', 'border-transparent', 'text-ivory');
             }
         };
         window.addEventListener('scroll', handleScroll, { passive: true });
@@ -22,10 +23,10 @@ export function TopBar() {
         <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4 pointer-events-none">
             <div
                 ref={barRef}
-                className="pointer-events-auto flex items-center justify-between px-6 md:px-8 py-3 rounded-full transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-transparent border border-transparent w-[95%] max-w-6xl"
+                className="pointer-events-auto flex items-center justify-between px-6 md:px-8 py-3 rounded-full transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-transparent border border-transparent w-[95%] max-w-6xl text-ivory"
             >
                 <div className="flex flex-col">
-                    <span className="font-serif italic font-semibold text-xl md:text-2xl tracking-normal text-ivory">
+                    <span className="font-serif italic font-semibold text-xl md:text-2xl tracking-normal">
                         Persiana Carpets
                     </span>
                 </div>
@@ -33,7 +34,7 @@ export function TopBar() {
                 <div>
                     <a
                         href="tel:07905350666"
-                        className="group relative inline-flex items-center gap-2 justify-center overflow-hidden rounded-full font-medium transition-transform duration-500 will-change-transform hover:scale-[1.03] bg-champagne text-obsidian px-6 md:px-7 py-1.5 md:py-2 text-sm"
+                        className="group relative inline-flex items-center gap-2 justify-center overflow-hidden rounded-full font-medium transition-transform duration-500 will-change-transform hover:scale-[1.03] bg-obsidian text-champagne px-6 md:px-7 py-1.5 md:py-2 text-sm shadow-sm"
                     >
                         <span className="relative z-10 flex items-center gap-2">
                             <Phone className="w-3.5 h-3.5" />

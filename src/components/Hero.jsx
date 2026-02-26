@@ -40,7 +40,7 @@ export function Hero() {
             <div className="relative z-10 w-full max-w-4xl flex flex-col items-start gap-4 md:gap-6">
                 <div className="flex flex-col gap-1 md:gap-2">
                     <p className="fade-up font-sans font-medium tracking-widest text-champagne uppercase text-xs md:text-sm drop-shadow-md">
-                        Persian Carpets and Rugs.
+                        Persian Carpets and Rugs
                     </p>
 
                     <h1 className="fade-up font-serif italic text-5xl md:text-6xl lg:text-[5rem] leading-[1.05] text-ivory tracking-tight text-balance shadow-black drop-shadow-lg">
