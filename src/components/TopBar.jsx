@@ -34,13 +34,11 @@ export function TopBar() {
                 <div>
                     <a
                         href="tel:07905350666"
-                        className="group relative inline-flex items-center gap-2 justify-center overflow-hidden rounded-full transition-transform duration-500 will-change-transform hover:scale-[1.03] bg-obsidian text-champagne px-6 md:px-7 py-1 md:py-[5px] shadow-sm"
+                        className="inline-flex items-center gap-2 justify-center rounded-full transition-transform duration-500 will-change-transform hover:scale-[1.03] bg-obsidian text-champagne px-6 md:px-7 py-1 md:py-[5px] shadow-sm font-sans font-bold tracking-wide"
                     >
-                        <span className="relative z-10 flex items-center gap-2">
-                            <Phone className="w-4 h-4" />
-                            <span className="hidden md:inline font-sans font-bold tracking-wide text-base">07905 350666</span>
-                            <span className="md:hidden font-sans font-bold tracking-wide text-sm">Call Us</span>
-                        </span>
+                        <Phone className="w-4 h-4 pointer-events-none" />
+                        <span className="hidden md:inline text-base pointer-events-none">07905 350666</span>
+                        <span className="md:hidden text-sm pointer-events-none">Call Us</span>
                     </a>
                 </div>
             </div>

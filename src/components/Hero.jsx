@@ -70,11 +70,9 @@ export function Hero() {
                 <div className="fade-up flex flex-col items-center md:items-start gap-3">
                     <a
                         href="tel:07905350666"
-                        className="group relative inline-flex items-center justify-center rounded-full font-medium transition-transform duration-500 will-change-transform hover:scale-[1.03] bg-ivory text-obsidian px-8 py-3 md:px-10 md:py-3.5 text-base md:text-lg"
+                        className="inline-flex items-center justify-center rounded-full font-medium transition-transform duration-500 will-change-transform hover:scale-[1.03] bg-ivory text-obsidian px-8 py-3 md:px-10 md:py-3.5 text-base md:text-lg"
                     >
-                        <span className="relative z-10 flex items-center gap-3">
-                            Call: 07905 350666
-                        </span>
+                        Call: 07905 350666
                     </a>
                     <p className="font-sans text-ivory/60 text-sm tracking-wide md:ml-4 fade-up">
                         Call to arrange a viewing

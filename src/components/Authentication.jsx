@@ -14,11 +14,9 @@ export function Authentication() {
                 <div className="mt-6 flex flex-col items-center gap-3">
                     <a
                         href="tel:07905350666"
-                        className="group relative inline-flex items-center justify-center overflow-hidden rounded-full font-sans font-semibold transition-transform duration-500 will-change-transform hover:scale-[1.03] bg-obsidian text-ivory px-8 py-3 text-lg"
+                        className="inline-flex items-center justify-center rounded-full font-sans font-semibold transition-transform duration-500 will-change-transform hover:scale-[1.03] bg-obsidian text-ivory px-8 py-3 text-lg"
                     >
-                        <span className="relative z-10 flex items-center gap-2">
-                            07905 350666
-                        </span>
+                        07905 350666
                     </a>
                     <span className="font-sans text-sm text-obsidian/70 font-bold">
                         Speak with the Collectors
