@@ -127,12 +127,12 @@ export function BentoGrid() {
                 // Create the radial glow element
                 const glow = document.createElement('div');
                 glow.className = 'pointer-events-none absolute z-0 opacity-0';
-                // 250px diameter roughly, centered on pointer
-                glow.style.width = '250px';
-                glow.style.height = '250px';
-                glow.style.left = '-125px'; // offset by half width
-                glow.style.top = '-125px'; // offset by half height
-                glow.style.background = 'radial-gradient(circle, rgba(180, 160, 120, 0.12) 0%, rgba(180, 160, 120, 0) 70%)';
+                // 400px diameter roughly, centered on pointer to be more pronounced
+                glow.style.width = '400px';
+                glow.style.height = '400px';
+                glow.style.left = '-200px'; // offset by half width
+                glow.style.top = '-200px'; // offset by half height
+                glow.style.background = 'radial-gradient(circle, rgba(180, 160, 120, 0.25) 0%, rgba(180, 160, 120, 0) 70%)';
 
                 // Ensure text stays above the glow
                 const children = Array.from(card.children);
