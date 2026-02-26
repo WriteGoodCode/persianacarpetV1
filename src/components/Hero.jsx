@@ -48,9 +48,9 @@ export function Hero() {
                     </h2>
                 </div>
 
-                <p className="fade-up font-sans text-xl md:text-2xl font-light text-ivory/90 leading-relaxed text-balance drop-shadow-md mt-2 md:mt-0">
+                <h2 className="fade-up font-sans text-xl md:text-2xl font-light text-ivory/90 leading-relaxed text-balance drop-shadow-md mt-2 md:mt-0">
                     Handmade Persian Rugs selected for mastery, not turnover.
-                </p>
+                </h2>
 
                 <div className="fade-up mt-2 flex flex-col md:flex-row gap-4 md:gap-8 max-w-lg mb-6 text-sm font-sans tracking-wide text-ivory/80">
                     <div className="flex items-center gap-2 drop-shadow-md">
