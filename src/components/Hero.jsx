@@ -39,13 +39,13 @@ export function Hero() {
             {/* Content */}
             <div className="relative z-10 w-full max-w-4xl flex flex-col items-start gap-4 md:gap-6">
                 <div className="flex flex-col gap-1 md:gap-2">
-                    <p className="fade-up font-sans font-medium tracking-widest text-champagne uppercase text-xs md:text-sm drop-shadow-md">
+                    <h1 className="fade-up font-sans font-medium tracking-widest text-champagne uppercase text-[10px] md:text-sm drop-shadow-md">
                         Persian Carpets and Rugs
-                    </p>
-
-                    <h1 className="fade-up font-serif italic text-5xl md:text-6xl lg:text-[5rem] leading-[1.05] text-ivory tracking-tight text-balance shadow-black drop-shadow-lg">
-                        Pieces commercial carpet dealers never see.
                     </h1>
+
+                    <h2 className="fade-up font-serif italic text-4xl md:text-6xl lg:text-[5rem] leading-[1.05] text-ivory tracking-tight text-balance shadow-black drop-shadow-lg">
+                        Pieces commercial carpet dealers never see.
+                    </h2>
                 </div>
 
                 <p className="fade-up font-sans text-xl md:text-2xl font-light text-ivory/90 leading-relaxed text-balance drop-shadow-md mt-2 md:mt-0">

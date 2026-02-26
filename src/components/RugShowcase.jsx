@@ -197,7 +197,7 @@ export function RugShowcase() {
 
                 <div className="w-full text-center mb-12 md:mb-16 max-w-2xl px-6">
                     <h2 className="font-serif italic text-4xl md:text-5xl text-ivory mb-6 tracking-tight">The Gallery</h2>
-                    <p className="font-sans font-light text-ivory/60 text-lg">Curated artifacts from our private showing.</p>
+                    <p className="font-sans font-medium text-ivory/60 text-lg">Curated artifacts from our private showing.</p>
                 </div>
 
                 <div className="w-full flex flex-col gap-32 focus:outline-none focus:ring-0">

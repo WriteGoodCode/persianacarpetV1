@@ -30,7 +30,7 @@ export function CollectorStory() {
                     The Collector Difference in Persian Carpets
                 </h2>
 
-                <div className="flex flex-col gap-8 font-sans font-light text-xl text-obsidian/85 leading-[1.8] text-balance">
+                <div className="flex flex-col gap-8 font-sans font-normal text-xl text-obsidian/85 leading-[1.8] text-balance">
                     <p className="fade-up">
                         Dr. Hossein Donyavi and Dr. Manoochehr Salahi have spent thirty years pursuing exceptional Persian carpets.
                     </p>

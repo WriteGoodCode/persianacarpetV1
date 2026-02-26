@@ -65,11 +65,11 @@ export function Footer() {
                         </span>
                     </div>
 
-                    <p className="font-sans text-xs text-ivory/30">
+                    <p className="font-sans text-[10px] text-ivory/30">
                         &copy; {new Date().getFullYear()} Persiana Carpets. All rights reserved.
                     </p>
 
-                    <p className="font-sans text-xs text-ivory/30">
+                    <p className="font-sans text-[10px] text-ivory/30">
                         Designed by Write Good Code.
                     </p>
                 </div>

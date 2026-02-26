@@ -20,7 +20,7 @@ export function Authentication() {
                             07905 350666
                         </span>
                     </a>
-                    <span className="font-sans text-sm text-obsidian/70 font-medium">
+                    <span className="font-sans text-sm text-obsidian/70 font-bold">
                         Speak with the Collectors
                     </span>
                 </div>
